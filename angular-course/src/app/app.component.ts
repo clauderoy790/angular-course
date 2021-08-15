@@ -16,9 +16,7 @@ import { CourseTitleComponent } from './course-title/course-title.component';
 export class AppComponent implements OnInit {
 
 
-    course1 = COURSES[0]
-    course2 = COURSES[1]
-    course3 = COURSES[2]
+    courses = COURSES
     description: string = ""
 
     constructor(
@@ -40,6 +38,11 @@ export class AppComponent implements OnInit {
         console.log("got a new change: " + event);
         this.description = str
 
+    }
+
+    onCourseViewClick(course: Course) {
+        console.log("want to view course: ");
+        console.log(course);
     }
 
     onEditCourse() {

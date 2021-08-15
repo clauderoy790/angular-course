@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { Course } from '../model/course';
 
 @Component({
   selector: 'course-card',
@@ -7,11 +8,17 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class CourseCardComponent implements OnInit {
   @Input()
-  title: string;
+  course: Course;
+@Input()
+cardId: number;
+
   public inputText: string;
 
   @Output()
   newTextChange: EventEmitter<string> = new EventEmitter<string>();
+
+  @Output("courseViewClick")
+  clickEmitter: EventEmitter<Course> = new EventEmitter<Course>();
 
   constructor() { }
 
@@ -25,5 +32,11 @@ export class CourseCardComponent implements OnInit {
 
   textIsChanging(str: string) {
     console.log("in the actual change: " + str);
+  }
+
+  courseClicked() {
+    console.log("COURSE CLICKED: " + this.course.description);
+
+    this.clickEmitter.emit(this.course)
   }
 }

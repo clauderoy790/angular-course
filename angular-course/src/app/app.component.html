@@ -6,30 +6,7 @@
 
 <div class="courses">
   <h1>Desc: {{description}}</h1>
-  <course-card [title]="course3.description" (newTextChange)="onChildTextChange($event)"></course-card>
-  <course-card (newTextChange)="onChildTextChange($event)"></course-card>
-  <course-card (newTextChange)="onChildTextChange($event)"></course-card>
-  <course-card (newTextChange)="onChildTextChange($event)"></course-card>
-  <!-- <div class="demo">
-
-
-      <button (click)="onEditCourse()" i18n>Edit Course</button>
-
-  </div>
-
-  <div class="courses">
-
-    <course-card *ngFor="let course of  courses  "
-                 (courseChanged)="save($event)"
-                 type="beginner"
-                 [course]="course">
-
-      <course-image [src]="course.iconUrl"></course-image>
-
-    </course-card>
-
-
-  </div> -->
-
-
+  <course-card *ngFor="let course of courses;index as i;first as isFirst;last as isLast" [class.is-first]="isFirst"
+    [course]="course" [cardId]="i+1" (courseViewClick)="onCourseViewClick($event)"
+    (newTextChange)="onChildTextChange($event)"></course-card>
 </div>
