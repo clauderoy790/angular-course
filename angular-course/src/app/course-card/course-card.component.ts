@@ -9,8 +9,8 @@ import { Course } from '../model/course';
 export class CourseCardComponent implements OnInit {
   @Input()
   course: Course;
-@Input()
-cardId: number;
+  @Input()
+  cardId: number;
 
   public inputText: string;
 
@@ -23,6 +23,25 @@ cardId: number;
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  cardClasses(): any {
+    return {
+      beginner: this.course.category == 'BEGINNER',
+      another: false,
+    }
+  }
+
+  isImageVisible(): boolean {
+    if (this.course && this.course.iconUrl)
+      return true;
+    return false;
+  }
+
+  getStyles(): any {
+    return {
+      "text-decoration": "underline",
+    }
   }
 
   onTextChange(val: string) {
