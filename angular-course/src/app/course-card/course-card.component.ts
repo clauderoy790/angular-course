@@ -1,61 +1,52 @@
-import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { Course } from '../model/course';
+import {
+    AfterContentInit,
+    AfterViewInit,
+    Component,
+    ContentChildren,
+    ElementRef,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output,
+    QueryList,
+    ViewEncapsulation
+} from '@angular/core';
+import {Course} from '../model/course';
+import {CourseImageComponent} from '../course-image/course-image.component';
 
 @Component({
-  selector: 'course-card',
-  templateUrl: './course-card.component.html',
-  styleUrls: ['./course-card.component.css']
+    selector: 'course-card',
+    templateUrl: './course-card.component.html',
+    styleUrls: ['./course-card.component.css']
 })
 export class CourseCardComponent implements OnInit {
-  @Input()
-  course: Course;
-  @Input()
-  cardId: number;
 
-  public inputText: string;
+    @Input()
+    course: Course;
 
-  @Output()
-  newTextChange: EventEmitter<string> = new EventEmitter<string>();
+    @Input()
+    cardIndex: number;
 
-  @Output("courseViewClick")
-  clickEmitter: EventEmitter<Course> = new EventEmitter<Course>();
+    @Output('courseChanged')
+    courseEmitter = new EventEmitter<Course>();
 
-  constructor() { }
 
-  ngOnInit(): void {
-  }
+    constructor() {
 
-  cardClasses(): any {
-    return {
-      beginner: this.course.category == 'BEGINNER',
-      another: false,
     }
-  }
 
-  isImageVisible(): boolean {
-    if (this.course && this.course.iconUrl)
-      return true;
-    return false;
-  }
+    ngOnInit() {
 
-  getStyles(): any {
-    return {
-      "text-decoration": "underline",
     }
-  }
 
-  onTextChange(val: string) {
-    this.newTextChange.emit(val)
-    console.log("ON TEXT CHG: " + val);
-  }
 
-  textIsChanging(str: string) {
-    console.log("in the actual change: " + str);
-  }
+    onSaveClicked(description:string) {
 
-  courseClicked() {
-    console.log("COURSE CLICKED: " + this.course.description);
+        this.courseEmitter.emit({...this.course, description});
 
-    this.clickEmitter.emit(this.course)
-  }
+    }
+
+
+
+
 }

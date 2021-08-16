@@ -1,31 +1,28 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule } from '@angular/common/http';
-import { CoursesModule } from './courses/courses.module';
-import { CourseTitleComponent } from './course-title/course-title.component';
 import { CourseCardComponent } from './course-card/course-card.component';
-import { FormsModule } from '@angular/forms';
+import { CourseImageComponent } from './course-image/course-image.component';
+import { HighlightedDirective } from './directives/highlighted.directive';
+import { NgxUnlessDirective } from './directives/ngx-unless.directive';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
-    declarations: [
-        AppComponent,
-        CourseTitleComponent,
-        CourseCardComponent
-    ],
-    imports: [
-        BrowserModule,
-        BrowserAnimationsModule,
-        HttpClientModule,
-        CoursesModule,
-        FormsModule,
-    ],
-    providers: [],
-    bootstrap: [AppComponent],
-    entryComponents: [CourseTitleComponent]
+  declarations: [
+    AppComponent,
+    CourseCardComponent,
+    CourseImageComponent,
+    HighlightedDirective,
+    NgxUnlessDirective
+  ],
+  imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
+    HttpClientModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {
-
-}
+export class AppModule { }

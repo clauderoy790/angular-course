@@ -6,11 +6,6 @@
     margin-top: 10px;
 }
 
-course-card.isFirst {
-    border-top: 2px solid grey;
-    padding-top: 20px;
-}
-
 button {
     margin-top: 20px;
     height: 40px;

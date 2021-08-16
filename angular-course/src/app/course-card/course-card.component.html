@@ -1,29 +1,34 @@
-<div class="course-card" *ngIf="course" [ngClass]="cardClasses()">
-    <div class="course-title" [ngStyle]="getStyles()">
-        {{course.description}}
-    </div>
-    <img *ngIf="isImageVisible();else noImage" width="300" alt="Angular Logo" src="{{course.iconUrl}}" />
+<div class="course-card" *ngIf="course" #container>
 
-    <ng-template #noImage>
-        <p>No image is available</p>
-    </ng-template>
-    <div>
-        ID : {{cardId}}
-    </div>
-    <div class="course-category" [ngSwitch]="course.category">
-        <div class="category" *ngSwitchCase="'BEGINNER'">Beginner</div>
-        <div class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
-        <div class="category" *ngSwitchCase="'ADVANCED'">Advanced</div>
-        <div class="category" *ngSwitchDefault>All Levels</div>
-    </div>
-    <div class="course-description">
-        course.longDescription
-    </div>
-    <div>
-        Contains {{course.lessonsCount}} lessons.
-    </div>
-    <div>
-        <input type="text" [ngModel]="inputText" (ngModelChange)="onTextChange($event)">
-    </div>
-    <button (click)="courseClicked()">View Course</button>
+  <div class="course-title">
+    {{ cardIndex || '' + ' ' + course.description }}
+  </div>
+
+  <ng-content select="course-image"
+              *ngIf="course.iconUrl"></ng-content>
+
+  <div class="course-description">
+
+    Edit Title: <input #courseTitle [value]="course.description">
+
+  </div>
+
+  <div class="course-category" [ngSwitch]="course.category">
+
+    <div class="category" *ngSwitchCase="'BEGINNER'">Beginner</div>
+
+    <div class="category" *ngSwitchCase="'INTERMEDIATE'">Intermediate</div>
+
+    <div class="category" *ngSwitchCase="'ADVANCED'">Advanced</div>
+
+  </div>
+
+  <button (click)="onSaveClicked(courseTitle.value)">Save Course</button>
+
 </div>
+
+
+
+
+
+

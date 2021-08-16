@@ -1,12 +1,26 @@
 <div class="top-menu">
 
-  <img class="logo" src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
+  <img class="logo"
+       src="https://angular-academy.s3.amazonaws.com/main-logo/main-page-logo-small-hat.png">
 
 </div>
 
-<div class="courses">
-  <h1>Desc: {{description}}</h1>
-  <course-card *ngFor="let course of courses;index as i;first as isFirst;last as isLast" [class.is-first]="isFirst"
-    [course]="course" [cardId]="i+1" (courseViewClick)="onCourseViewClick($event)"
-    (newTextChange)="onChildTextChange($event)"></course-card>
+<div>
+
+  <div class="courses">
+
+    <course-card *ngFor="let course of courses"
+                 [course]="course">
+
+      <course-image [src]="course.iconUrl"></course-image>
+
+    </course-card>
+
+  </div>
+
+
 </div>
+
+
+
+
